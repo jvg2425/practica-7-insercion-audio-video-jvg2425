@@ -1,0 +1,26 @@
+/* Base */
+.box {
+  border: 2px solid transparent;
+  border-radius: 0;
+}
+
+/* Cajas */
+.box-header { height: 80px; background: #d9e8ff; border-color: #6ea0ff; }
+.box-amarillo   { height: 70px; background: #fff3cd; border-color: #f0ad4e; }
+.box-rosa   { height: 60px; background: #f8d7da; border-color: #dc3545; }
+.box-verde  { height: 90px; background: #d1e7dd; border-color: #198754; }
+.box-footer { height: 70px; background: #0d9ad6; border-color: #0b6a92; }
+
+/* BArra lateral */
+.box-sidebar { min-height: 100%; background: #63a81a; border-color: #2f6b00; }
+
+
+/* Tamaño de cajas responsivas */
+/* Ordenador */
+@media (min-width: 992px) {
+  .box-header { min-height: 100px; }
+  .box-amarillo   { min-height: 90px; }
+  .box-rosa { min-height: 100px;}
+  .box-verde { min-height: 240px; }
+  .box-footer { min-height: 90px; }
+}

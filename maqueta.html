@@ -1,0 +1,143 @@
+<!--
+    Añado apuntes a modo de comentario en el código HTML, de cara a tener apuntes ya preparados.
+    Referencias: 
+        - https://www.eniun.com/contenedores-filas-columnas-bootstrap-5/
+        - https://getbootstrap.com/docs/5.3/getting-started/introduction/
+-->
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <!--
+    Viewport imprescindible para diseño responsive.
+    Hace que el ancho del layout se adapte al ancho del dispositivo.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Práctica 6 — Maqueta Bootstrap</title>
+
+    <!-- Bootstrap 5.3.3 -->
+    <!--
+        Hoja de estilos de Bootstrap 5.3.3 cargada desde CDN.
+        Incluye el sistema de grid, utilidades, componentes y reset CSS. La alternativa es descargar los ficheros y servirlos localmente.
+    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--
+        CSS propio de la maqueta.
+        Definimos colores, alturas y estilos visuales,
+        nunca la estructura responsive (eso lo hace Bootstrap).
+    -->
+    <link rel="stylesheet" href="maqueta.css" />
+</head>
+
+<body>
+    <!--
+        container-fluid:
+        - Ocupa el 100% del ancho de la pantalla en todos los tamaños.
+        - py-3 añade padding vertical (top y bottom).
+            - p: padding
+            - y: vertical (top + bottom)
+            - 3: tamaño del padding (1-5)
+    -->
+    <div class="container-fluid py-3">
+
+        <!--
+            HEADER
+            Siempre visible en todos los tamaños.
+            Es un bloque simple al 100% de ancho.
+            - mb-3 añade margin-bottom (separación inferior).
+                - m: margin
+                - b: bottom
+                - 3: tamaño del margin (1-5)
+        -->
+        <header class="box box-header mb-3"></header>
+
+        <!--
+            Fila principal del layout.
+            - row crea una fila del sistema grid.
+            - g-3 define el espacio (gap) entre columnas y filas.
+                - g: gap
+                - 3: tamaño del gap (1-5)
+            -->
+        <div class="row g-3">
+
+            <!--
+                SIDEBAR
+                - col-md-3:
+                    - A partir de md (≥768px) ocupa 3 de 12 columnas.
+                    - En tamaños inferiores (sm y xs) no ocupa espacio (se oculta).
+                - d-none d-md-block:
+                    - Oculta el sidebar en móvil.
+                    - Se muestra solo desde md en adelante.
+            -->
+            <aside class="col-md-3 d-none d-md-block">
+                <!--
+                h-100:
+                - Hace que el sidebar ocupe toda la altura disponible
+                    dentro de su columna.
+                -->
+                <div class="box box-sidebar h-100"></div>
+            </aside>
+
+            <!--
+            MAIN
+            col-12:
+                - En móvil ocupa el 100% del ancho.
+            col-md-9:
+                - En tablet/PC ocupa 9 columnas (el resto del espacio).
+            -->
+            <main class="col-12 col-md-9">
+
+                <!--
+                    BLOQUE AMARILLO
+                    Siempre ocupa el ancho completo del main.
+                -->
+                <section class="box box-amarillo mb-3"></section>
+
+                <!-- 4 rosas: 2x2 en móvil/tablet, 4 en fila en pc -->
+                <!--
+                    BLOQUE DE 4 CAJAS ROSAS
+                    row crea una subfila dentro del main.
+                -->
+                <section class="row g-3 mb-3">
+                    <!--
+                        - col-6:
+                            - En móvil y tablet: 2 columnas por fila (2x2).
+                            - Cada caja ocupa la mitad del ancho (6 de 12 columnas).
+                        - col-lg-3:
+                            - En pantallas grandes (≥992px): 4 columnas en una sola fila.
+                            - Cada caja ocupa un cuarto del ancho (3 de 12 columnas).
+                    -->
+                    <div class="col-6 col-lg-3"><div class="box box-rosa"></div></div>
+                    <div class="col-6 col-lg-3"><div class="box box-rosa"></div></div>
+                    <div class="col-6 col-lg-3"><div class="box box-rosa"></div></div>
+                    <div class="col-6 col-lg-3"><div class="box box-rosa"></div></div>
+                </section>
+
+                <!-- 2 verdes: apiladas hasta lg, 2 columnas en lg -->
+                <section class="row g-3">
+                    <!--
+                        - col-12:
+                            - Apiladas verticalmente en móvil y tablet.
+                        - col-lg-6:
+                            - Dos columnas horizontales en pantallas grandes.
+                    -->
+                    <div class="col-12 col-lg-6"><div class="box box-verde"></div></div>
+                    <div class="col-12 col-lg-6"><div class="box box-verde"></div></div>
+                </section>
+            </main>
+        </div>
+
+        <!--
+            FOOTER
+            Siempre visible.
+            - mt-3 añade margen superior para separarlo del contenido.
+                - m: margin
+                - t: top
+                - 3: tamaño del margin (1-5)
+        -->
+        <footer class="box box-footer mt-3"></footer>
+    </div>
+</body>
+</html>

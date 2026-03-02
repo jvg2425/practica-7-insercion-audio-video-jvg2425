@@ -1,0 +1,343 @@
+<!--
+    Añado apuntes a modo de comentario en el código HTML, de cara a tener apuntes ya preparados.
+    Referencias: 
+        - https://www.eniun.com/contenedores-filas-columnas-bootstrap-5/
+        - https://getbootstrap.com/docs/5.3/getting-started/introduction/
+-->
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <!--
+    Viewport imprescindible para diseño responsive.
+    Hace que el ancho del layout se adapte al ancho del dispositivo.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Práctica 6 — Bootstrap</title>
+
+    <!-- Bootstrap 5.3.3 -->
+    <!--
+        Hoja de estilos de Bootstrap 5.3.3 cargada desde CDN.
+        Incluye el sistema de grid, utilidades, componentes y reset CSS. La alternativa es descargar los ficheros y servirlos localmente.
+    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="estilos.css" />
+     
+    <!--
+        Bootstrap JS Bundle:
+        Necesario para dropdown y carousel (y collapse de la navbar).
+        Sin este script, el menú desplegable y el carrusel no funcionarían.
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <!--
+        navbar: activa estilos del componente navbar
+        navbar-expand-lg: el menú se colapsa en móvil/tablet y se expande desde lg (≥992px)
+        bg-white: fondo blanco (utility)
+        border-bottom: borde inferior (utility)
+    -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+    
+        <!--
+            container: centra contenido y limita ancho máximo en pantallas grandes
+            Diferente de container-fluid que ocupa el 100% del ancho siempre, usado en maqueta.html.
+        -->
+        <div class="container">
+
+            <!--
+                - navbar-brand: zona de marca/logotipo dentro de navbar
+                - d-flex align-items-center gap-2:
+                    - utilidades flex para alinear verticalmente y separar elementos
+                    -d-flex: contenedor flex
+                    - align-items-center: alinea verticalmente al centro
+                    - gap-2: espacio entre elementos (1-5)
+            -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="https://www.eniun.com/wp-content/uploads/ENIUN@2x.png" 
+                    alt="ENIUN" class="logo">
+            </a>
+
+            <!--
+                - navbar-toggler: Botón hamburguesa
+                    - Solo es visible cuando la navbar está colapsada (< lg)
+                - data-bs-toggle="collapse" + data-bs-target="#navMain":
+                    conecta el botón con el div que se colapsa/expande
+            -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navMain"
+                    aria-controls="navMain" aria-expanded="false" aria-label="Abrir menú">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--
+                Zona colapsable:
+                - collapse navbar-collapse:
+                    - collapse: comportamiento colapsable (móvil)
+                    - navbar-collapse: estilos específicos de navbar para el contenido colapsado
+                - id="navMain": debe coincidir con data-bs-target del botón toggler
+            -->
+            <div class="collapse navbar-collapse" id="navMain">
+
+                <!--
+                    Menú (lista de navegación):
+                    - navbar-nav: estilos de menú de Bootstrap
+                    - me-auto: margin-end auto:
+                        -> empuja el resto (el buscador) hacia la derecha
+                    - mb-2 mb-lg-0:
+                        - en móvil deja margen inferior
+                        - desde lg elimina margen inferior (0)
+                -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!--
+                            - nav-link: estilo de enlace de navegación
+                            - active: marca visualmente la sección actual
+                        -->
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+
+                    <!--
+                        Dropdown (componente Bootstrap)
+                        Requiere Bootstrap JS (bundle) para funcionar.
+                    -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Servicios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">SEO</a></li>
+                            <li><a class="dropdown-item" href="#">Desarrollo web</a></li>
+                            <li><a class="dropdown-item" href="#">Marketing online</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tabla.html">Tabla</a>
+                    </li>
+                </ul>
+
+                <!--
+                    Formulario de búsqueda alineado a la derecha:
+                    d-flex: lo convierte en un contenedor flex para poner input + botón en línea
+                -->
+                <form class="d-flex" role="search">
+                    <!-- form-control: estilo Bootstrap para inputs -->
+                    <input class="form-control me-2" type="search" placeholder="Buscar…" 
+                        aria-label="Buscar">
+                    <!-- btn + btn-outline-primary: botón con estilo Bootstrap -->
+                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CAROUSEL -->
+    <!--
+        - carousel: activa el componente
+        - slide: habilita animación de transición
+        - data-bs-ride="carousel": inicia el carrusel automáticamente
+        - id="mainCarousel": referencia para indicadores y controles
+    -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" 
+                class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" 
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" 
+                aria-label="Slide 3"></button>
+        </div>
+
+         <!--
+            Indicadores (los elementos del carrusel)
+            Cada botón apunta al id del carrusel y a un slide index (0,1,2,...)
+            - active: el primero está activo al cargar la página
+        -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!--
+                    - d-block w-100:
+                        - d-block: display block
+                        - w-100: width 100%
+                hero-img: clase propia para limitar altura y usar object-fit (en estilos.css)
+                -->
+                <img src="https://www.eniun.com/wp-content/uploads/ENIUNCreatividadDiseno.png" 
+                    class="d-block w-100 hero-img" alt="Creatividad y diseño">
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.eniun.com/wp-content/uploads/ENIUNCreatividadSocialNetwork.png" 
+                    class="d-block w-100 hero-img" alt="Creatividad en redes sociales">
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.eniun.com/wp-content/uploads/ENIUNCreatividadSeo.png" 
+                    class="d-block w-100 hero-img" alt="Creatividad SEO">
+            </div>
+        </div>
+
+        <!--
+            Contenedor de slides:
+            - carousel-inner: agrupa los items
+            - Cada carousel-item es un slide; uno debe tener class="active"
+        -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+    <!-- CONTENIDO -->
+    <!--
+        - container: centra el contenido con ancho máximo adaptativo
+        - my-4: margin vertical (top/bottom) para separar del carrusel y del footer
+            - m: margin
+            - y: vertical (top + bottom)
+            - 4: tamaño del margin (1-5)
+    -->
+    <main class="container my-4">
+        <!-- Bienvenida/Jumbotron
+            Bootstrap 5 ya no incluye el componente jumbotron, pero podemos recrearlo con utilidades.
+            https://www.tutorialpedia.org/blog/how-to-create-jumbotron-in-bootstrap-5/
+
+            - p-4: padding en móvil
+            - p-md-5: padding mayor a partir de md (≥768px)
+            - bg-body-tertiary: fondo claro predefinido por Bootstrap
+            - rounded-1: bordes redondeados
+        -->
+        <section class="p-4 p-md-5 bg-body-tertiary rounded-1">
+            <!--
+                - display-5: tamaño de título grande (typography)
+                - fw-semibold: peso seminegrita
+            -->
+            <h1 class="display-5 fw-semibold">Hello, world!</h1>
+            <!-- 
+                - lead: texto “destacado” con mayor tamaño/line-height 
+                - mb-3: margin bottom para separar del párrafo siguiente
+            -->
+            <p class="lead mb-3">
+            This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+            </p>
+            <!-- 
+                - mb-4: margin bottom para separar del botón
+            -->
+            <p class="mb-4">
+            It uses utility classes for typography and spacing to space content out within the larger container.
+            </p>
+            <!-- btn btn-primary: botón Bootstrap con color primario -->
+            <a class="btn btn-primary" href="#">Learn more</a>
+        </section>
+
+        <!-- text-center: centra el texto; my-5: márgenes verticales grandes -->
+        <h2 class="text-center my-5">Artículos</h2>
+
+        <!--
+            Grid de cards:
+            - row: fila del grid
+            - g-4: separación entre columnas/filas
+            -  justify-content-left: alinea las columnas a la izquierda si no ocupan toda la fila
+        -->
+        <section class="row g-4 justify-content-left">
+            <!--
+            Columna responsive:
+                - col-12: 1 card por fila en móvil (100%)
+                - col-md-6: 2 cards por fila en tablet (cada una 50%)
+                - col-lg-4: 3 cards por fila en PC (cada una 33.33%)
+            -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <!--
+                    Card (componente Bootstrap):
+                    - card: estructura base de la tarjeta
+                    - h-100: iguala altura de todas las cards en la fila
+                    - shadow-sm: sombra ligera
+                -->
+                <article class="card h-100 shadow-sm">
+                    <!-- card-img-top: imagen superior de la card; p-3: padding -->
+                    <img src="images/articulo1.png" class="card-img-top p-3" alt="Artículo 1">
+                    <!-- card-body: cuerpo de la tarjeta. Con su padding y tipografía estándar-->
+                    <div class="card-body">
+                        <!-- card-title: título de la tarjeta -->
+                        <h5 class="card-title">Card title</h5>
+                        <!-- card-text: texto de la tarjeta -->
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                        <!-- btn btn-primary btn-sm: botón primario pequeño -->
+                        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100 shadow-sm">
+                    <img src="images/articulo2.png" class="card-img-top p-3" alt="Artículo 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100 shadow-sm">
+                    <img src="images/articulo3.png" class="card-img-top p-3" alt="Artículo 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <!--
+        - mt-5: margen superior grande para separar el footer del contenido
+        - site-footer: clase propia para fondo color corporativo, definida en estilos.css
+    -->
+    <footer class="site-footer mt-5"> 
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <!--
+                - col-12: en móvil ocupa ancho completo (una fila por elemento)
+                - col-md-6: desde md se divide en 2 columnas (50/50)
+                - text-center: centrado en móvil
+                - text-md-start: alineado a la izquierda en tablet/PC
+                - fw-semibold: seminegrita
+                - text-white: texto blanco
+            -->
+            <div class="col-12 col-md-6 text-center text-md-start fw-semibold text-white">
+                Eniun.com
+            </div>
+            <!--
+                - text-md-end: alineación a la derecha desde md
+                - footer-link: clase propia para color/hover en estilos.css
+            -->
+            <div class="col-12 col-md-6 text-center text-md-end">
+                <a class="footer-link" href="#">Política de privacidad y cookies</a>
+            </div>
+        </div>
+    </div>
+    </footer>
+</body>
+</html>

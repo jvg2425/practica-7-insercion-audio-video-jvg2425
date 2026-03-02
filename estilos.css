@@ -1,0 +1,26 @@
+.logo {
+  height: 26px;
+  width: auto;
+}
+
+.hero-img {
+  max-height: 420px;
+  object-fit: cover;
+  /* https://www.w3schools.com/csS/css3_object-fit.asp 
+  cover - Preserves the aspect ratio, and the image fills the container. Cuts overflowing content if needed.
+  */
+}
+
+.site-footer {
+  background: #159db5;
+}
+
+.footer-link {
+  color: rgba(255,255,255,.9);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
