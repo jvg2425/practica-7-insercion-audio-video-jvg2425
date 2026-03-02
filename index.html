@@ -1,4 +1,9 @@
 <!--
+    En cada card he añadido el vídeo dentro del card-body.
+    Y en cada card he puesto las fuentes en un orden diferente para mostrar que el navegador elige la primera que soporta.
+-->
+
+<!--
     Añado apuntes a modo de comentario en el código HTML, de cara a tener apuntes ya preparados.
     Referencias: 
         - https://www.eniun.com/contenedores-filas-columnas-bootstrap-5/
@@ -270,6 +275,17 @@
                     <img src="images/articulo1.png" class="card-img-top p-3" alt="Artículo 1">
                     <!-- card-body: cuerpo de la tarjeta. Con su padding y tipografía estándar-->
                     <div class="card-body">
+                        <div class="ratio ratio-16x9">
+                            <!-- ratio mantiene una proporción fija 
+                            -->
+                            <video controls preload="metadata">
+                                <!-- Distintas fuentes por orden -->
+                                <source src="media/video/video.webm" type="video/webm">
+                                <source src="media/video/video.ogv" type="video/ogg">
+                                <source src="media/video/video.mp4" type="video/mp4">
+                                Tu navegador no soporta vídeo HTML5.
+                            </video>
+                        </div>
                         <!-- card-title: título de la tarjeta -->
                         <h5 class="card-title">Card title</h5>
                         <!-- card-text: texto de la tarjeta -->
@@ -286,6 +302,17 @@
                 <article class="card h-100 shadow-sm">
                     <img src="images/articulo2.png" class="card-img-top p-3" alt="Artículo 2">
                     <div class="card-body">
+                        <div class="ratio ratio-16x9">
+                            <!-- ratio mantiene una proporción fija 
+                            -->
+                            <video controls preload="metadata">
+                                <!-- Distintas fuentes por orden -->
+                                <source src="media/video/video.ogv" type="video/ogg">
+                                <source src="media/video/video.mp4" type="video/mp4">
+                                <source src="media/video/video.webm" type="video/webm">
+                                Tu navegador no soporta vídeo HTML5.
+                            </video>
+                        </div>
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">
                             Some quick example text to build on the card title and make up the bulk of the card's content.
@@ -299,6 +326,17 @@
                 <article class="card h-100 shadow-sm">
                     <img src="images/articulo3.png" class="card-img-top p-3" alt="Artículo 3">
                     <div class="card-body">
+                        <div class="ratio ratio-16x9">
+                            <!-- ratio mantiene una proporción fija 
+                            -->
+                            <video controls preload="metadata">
+                                <!-- Distintas fuentes por orden -->
+                                <source src="media/video/video.mp4" type="video/mp4">
+                                <source src="media/video/video.webm" type="video/webm">
+                                <source src="media/video/video.ogv" type="video/ogg">
+                                Tu navegador no soporta vídeo HTML5.
+                            </video>
+                        </div>
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">
                             Some quick example text to build on the card title and make up the bulk of the card's content.
