@@ -1,0 +1,316 @@
+<!--
+    En cada card he añadido el vídeo dentro del card-body.
+    Y en cada card he puesto las fuentes en un orden diferente para mostrar que el navegador elige la primera que soporta.
+-->
+
+<!--
+    Añado apuntes a modo de comentario en el código HTML, de cara a tener apuntes ya preparados.
+    Referencias: 
+        - https://www.eniun.com/contenedores-filas-columnas-bootstrap-5/
+        - https://getbootstrap.com/docs/5.3/getting-started/introduction/
+-->
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <!--
+    Viewport imprescindible para diseño responsive.
+    Hace que el ancho del layout se adapte al ancho del dispositivo.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Práctica 7 — Audio y Vídeo</title>
+
+    <!-- Bootstrap 5.3.3 -->
+    <!--
+        Hoja de estilos de Bootstrap 5.3.3 cargada desde CDN.
+        Incluye el sistema de grid, utilidades, componentes y reset CSS. La alternativa es descargar los ficheros y servirlos localmente.
+    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="estilos.css" />
+     
+    <!--
+        Bootstrap JS Bundle:
+        Necesario para dropdown y carousel (y collapse de la navbar).
+        Sin este script, el menú desplegable y el carrusel no funcionarían.
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <!--
+        navbar: activa estilos del componente navbar
+        navbar-expand-lg: el menú se colapsa en móvil/tablet y se expande desde lg (≥992px)
+        bg-white: fondo blanco (utility)
+        border-bottom: borde inferior (utility)
+    -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+    
+        <!--
+            container: centra contenido y limita ancho máximo en pantallas grandes
+            Diferente de container-fluid que ocupa el 100% del ancho siempre, usado en maqueta.html.
+        -->
+        <div class="container">
+
+            <!--
+                - navbar-brand: zona de marca/logotipo dentro de navbar
+                - d-flex align-items-center gap-2:
+                    - utilidades flex para alinear verticalmente y separar elementos
+                    -d-flex: contenedor flex
+                    - align-items-center: alinea verticalmente al centro
+                    - gap-2: espacio entre elementos (1-5)
+            -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <img src="https://www.eniun.com/wp-content/uploads/ENIUN@2x.png" 
+                    alt="ENIUN" class="logo">
+            </a>
+
+            <!--
+                - navbar-toggler: Botón hamburguesa
+                    - Solo es visible cuando la navbar está colapsada (< lg)
+                - data-bs-toggle="collapse" + data-bs-target="#navMain":
+                    conecta el botón con el div que se colapsa/expande
+            -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navMain"
+                    aria-controls="navMain" aria-expanded="false" aria-label="Abrir menú">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--
+                Zona colapsable:
+                - collapse navbar-collapse:
+                    - collapse: comportamiento colapsable (móvil)
+                    - navbar-collapse: estilos específicos de navbar para el contenido colapsado
+                - id="navMain": debe coincidir con data-bs-target del botón toggler
+            -->
+            <div class="collapse navbar-collapse" id="navMain">
+
+                <!--
+                    Menú (lista de navegación):
+                    - navbar-nav: estilos de menú de Bootstrap
+                    - me-auto: margin-end auto:
+                        -> empuja el resto (el buscador) hacia la derecha
+                    - mb-2 mb-lg-0:
+                        - en móvil deja margen inferior
+                        - desde lg elimina margen inferior (0)
+                -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!--
+                            - nav-link: estilo de enlace de navegación
+                            - active: marca visualmente la sección actual
+                        -->
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+
+                    <!--
+                        Dropdown (componente Bootstrap)
+                        Requiere Bootstrap JS (bundle) para funcionar.
+                    -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Servicios
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">SEO</a></li>
+                            <li><a class="dropdown-item" href="#">Desarrollo web</a></li>
+                            <li><a class="dropdown-item" href="#">Marketing online</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tabla.html">Tabla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="controlVideo.html">Control de vídeo</a>
+                    </li>
+                </ul>
+
+                <!--
+                    Formulario de búsqueda alineado a la derecha:
+                    d-flex: lo convierte en un contenedor flex para poner input + botón en línea
+                -->
+                <form class="d-flex" role="search">
+                    <!-- form-control: estilo Bootstrap para inputs -->
+                    <input class="form-control me-2" type="search" placeholder="Buscar…" 
+                        aria-label="Buscar">
+                    <!-- btn + btn-outline-primary: botón con estilo Bootstrap -->
+                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <h1 class="h3 text-center mb-4">Control de vídeo</h1>
+
+        <div class="ratio ratio-16x9 mb-3">
+            <video id="medio" preload="metadata">
+                <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4">
+            </video>
+        </div>
+        <nav class="d-flex flex-wrap gap-2 justify-content-center">
+            <input class="btn btn-outline-secondary" type="button" id="reiniciar" value="Reiniciar">
+            <input class="btn btn-outline-secondary" type="button" id="retrasar" value="&laquo; 5s">
+            <input class="btn btn-primary" type="button" id="play" value="&#9658;">
+            <input class="btn btn-outline-secondary" type="button" id="adelantar" value="5s &raquo;">
+            <input class="btn btn-outline-secondary" type="button" id="silenciar" value="Silenciar">
+            <label id="volumenLabel">Volumen</label>
+            <input class="btn btn-outline-secondary" type="button" id="menosVolumen" value="Vol -">
+            <input class="btn btn-outline-secondary" type="button" id="masVolumen" value="Vol +">
+        </nav>
+    </main>
+
+    <!-- FOOTER -->
+    <!--
+        - mt-5: margen superior grande para separar el footer del contenido
+        - site-footer: clase propia para fondo color corporativo, definida en estilos.css
+    -->
+    <footer class="site-footer mt-5"> 
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <!--
+                - col-12: en móvil ocupa ancho completo (una fila por elemento)
+                - col-md-6: desde md se divide en 2 columnas (50/50)
+                - text-center: centrado en móvil
+                - text-md-start: alineado a la izquierda en tablet/PC
+                - fw-semibold: seminegrita
+                - text-white: texto blanco
+            -->
+            <div class="col-12 col-md-6 text-center text-md-start fw-semibold text-white">
+                Eniun.com
+            </div>
+            <!--
+                - text-md-end: alineación a la derecha desde md
+                - footer-link: clase propia para color/hover en estilos.css
+            -->
+            <div class="col-12 col-md-6 text-center text-md-end">
+                <a class="footer-link" href="#">Política de privacidad y cookies</a>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <script>
+        let medio, play, reiniciar, retrasar, adelantar, silenciar, menosVolumen, masVolumen;
+
+        function accionPlay() {
+            if (!medio.paused && !medio.ended) {
+                medio.pause();
+                play.value = '\u25BA';
+                document.body.style.backgroundColor = '#fff';
+            } else {
+                medio.play();
+                play.value = '||';
+                document.body.style.backgroundColor = 'grey';
+            }
+        }
+
+        function accionReiniciar() {
+            // Reinicia y reproduce desde el inicio
+            const estabaReproduciendo = !medio.paused && !medio.ended;
+            medio.currentTime = 0;
+
+            if (estabaReproduciendo) {
+                medio.play();
+                play.value = '||';
+                document.body.style.backgroundColor = 'grey';
+            } else {
+                medio.pause();
+                play.value = '\u25BA';
+                document.body.style.backgroundColor = '#fff';
+            }
+        }
+
+        function accionRetrasar() {
+            // -5s sin bajar de 0
+            medio.currentTime = Math.max(0, medio.currentTime - 5);
+        }
+
+        function accionAdelantar() {
+            // +5s sin superar duration
+            // duration puede ser NaN si aún no hay metadata cargada
+            const dur = medio.duration;
+            if (!isNaN(dur)) {
+                medio.currentTime = Math.min(dur, medio.currentTime + 5);
+            }
+            if(medio.currentTime >= dur) {
+                medio.pause();
+                play.value = '\u25BA';
+                document.body.style.backgroundColor = '#fff';
+            }
+        }
+
+        function accionSilenciar() {
+            medio.muted = !medio.muted;
+            silenciar.value = medio.muted ? 'Escuchar' : 'Silenciar';
+            medio.volume = medio.muted ? 0 : 0.5; // Si se silencia, volumen a 0; si se activa, volumen a 0.5
+            actualizarLabelVolumen();
+        }
+
+        function accionMasVolumen() {
+            // usamos redondeo para evitar problemas de precisión con decimales, y limitamos entre 0 y 1
+            medio.volume = Math.min(1, Math.round((medio.volume + 0.1) * 10) / 10);
+            if (medio.volume > 0) {
+                medio.muted = false;
+                silenciar.value = 'Silenciar';
+            }
+            actualizarLabelVolumen();
+        }
+
+        function accionMenosVolumen() {
+            // usamos redondeo para evitar problemas de precisión con decimales, y limitamos entre 0 y 1
+            medio.volume = Math.max(0, Math.round((medio.volume - 0.1) * 10) / 10);
+            if (medio.volume === 0) {
+                medio.muted = true;
+                silenciar.value = 'Escuchar';
+            } else {
+                medio.muted = false;
+                silenciar.value = 'Silenciar';
+            }
+            actualizarLabelVolumen();
+        }
+
+        function actualizarLabelVolumen() {
+            const volumenLabel = document.getElementById('volumenLabel');
+            const volumenPorcentaje = Math.round(medio.volume * 100);
+            volumenLabel.textContent = `Volumen: ${volumenPorcentaje}%`;
+        }
+
+        function iniciar() {
+            medio = document.getElementById('medio');
+            play = document.getElementById('play');
+            reiniciar = document.getElementById('reiniciar');
+            retrasar = document.getElementById('retrasar');
+            adelantar = document.getElementById('adelantar');
+            silenciar = document.getElementById('silenciar');
+            menosVolumen = document.getElementById('menosVolumen');
+            masVolumen = document.getElementById('masVolumen');
+            actualizarLabelVolumen();
+
+            play.addEventListener('click', accionPlay);
+            reiniciar.addEventListener('click', accionReiniciar);
+            retrasar.addEventListener('click', accionRetrasar);
+            adelantar.addEventListener('click', accionAdelantar);
+            silenciar.addEventListener('click', accionSilenciar);
+            menosVolumen.addEventListener('click', accionMenosVolumen);
+            masVolumen.addEventListener('click', accionMasVolumen);
+        }
+
+        window.addEventListener('load', iniciar, false);
+    </script>
+</body>
+</html>
+
+
+
